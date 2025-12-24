@@ -83,7 +83,7 @@ public sealed class SyphonServer : MonoBehaviour
         RenderTexture.active = tempRenderTexture;
 
         GL.PushMatrix();
-        GL.LoadPixelMatrix(0, destinationWidth, destinationHeight, 0);
+        GL.LoadPixelMatrix(0, destinationWidth, 0, destinationHeight);
 
         Graphics.DrawTexture(
             destinationRect,
