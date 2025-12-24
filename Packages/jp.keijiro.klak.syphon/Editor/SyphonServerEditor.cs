@@ -16,6 +16,12 @@ public class SyphonServerEditor : Editor
     AutoProperty _sourceCamera;
     AutoProperty _sourceTexture;
     AutoProperty KeepAlpha;
+    
+    AutoProperty WatermarkEnabled;
+    AutoProperty WatermarkSprite;
+    AutoProperty WatermarkAnchorMode;
+    AutoProperty WatermarkOffset;
+    AutoProperty WatermarkScale;
 
     #pragma warning restore
 
@@ -58,6 +64,20 @@ public class SyphonServerEditor : Editor
         // Keep Alpha
         EditorGUILayout.PropertyField(KeepAlpha);
 
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("Watermark", EditorStyles.boldLabel);
+        EditorGUILayout.PropertyField(WatermarkEnabled);
+
+        if (WatermarkEnabled.Target.hasMultipleDifferentValues || WatermarkEnabled.Target.boolValue)
+        {
+            EditorGUI.indentLevel++;
+            EditorGUILayout.PropertyField(WatermarkSprite);
+            EditorGUILayout.PropertyField(WatermarkAnchorMode);
+            EditorGUILayout.PropertyField(WatermarkOffset);
+            EditorGUILayout.PropertyField(WatermarkScale);
+            EditorGUI.indentLevel--;
+        }
+        
         serializedObject.ApplyModifiedProperties();
     }
 
