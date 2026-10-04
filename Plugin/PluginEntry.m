@@ -71,6 +71,20 @@ void Plugin_PublishServerTexture(LiteServer *server)
     [server publishNewFrame];
 }
 
+// Resizes the server's surface in place. The server keeps its UUID, so
+// connected clients stay bound and switch to the new surface on the next
+// publish. Re-read the texture with Plugin_GetServerTexture afterwards.
+int Plugin_ResizeServer(LiteServer *server, int width, int height)
+{
+    return [server resizeTo:NSMakeSize(width, height) device:GetMetalDevice()] ? 1 : 0;
+}
+
+// True while at least one Syphon client is connected to the server.
+int Plugin_ServerHasClients(LiteServer *server)
+{
+    return server.hasClients ? 1 : 0;
+}
+
 #pragma mark - Plugin client functions
 
 void *Plugin_CreateClient(const char *pName, const char *pAppName)
