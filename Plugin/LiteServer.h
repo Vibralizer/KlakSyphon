@@ -11,8 +11,10 @@
 @interface LiteServer : NSObject
 
 @property (readonly) id <MTLTexture> texture;
+@property (readonly) BOOL hasClients;
 
 - (id)initWithName:(NSString *)name dimensions:(NSSize)size pixelFormat:(MTLPixelFormat)format device:(id <MTLDevice>)device;
+- (BOOL)resizeTo:(NSSize)size device:(id <MTLDevice>)device;
 - (void)publishNewFrame;
 
 @end
